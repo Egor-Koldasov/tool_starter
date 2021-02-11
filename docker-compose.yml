@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  gatsby:
+    build: ./gatsby
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./gatsby/src:/usr/src/app/src
+  graphql:
+    build: ./graphql
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./graphql/src:/usr/src/app/src
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_DB: dev_overview
+      POSTGRES_PASSWORD: devpassword
+  dbmate:
+    image: amacneil/dbmate
+    command: up
+    volumes:
+      - ./postgres/db:/db
+    environment:
+      DATABASE_URL: postgres://admin:devpassword@postgres:5432/dev_overview?sslmode=disable
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8100:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@dev.local
+      PGADMIN_DEFAULT_PASSWORD: pgadmindev
