@@ -1,17 +1,18 @@
 version: "3.9"
 services:
-  gatsby:
-    build: ./gatsby
+  webpack:
+    build: ./webpack
     ports:
-      - "8000:8000"
+      - "3000:3000"
+      - "9229:9229"
     volumes:
-      - ./gatsby/src:/usr/src/app/src
+      - ./webpack/src:/app/src
   graphql:
     build: ./graphql
     ports:
       - "4000:4000"
     volumes:
-      - ./graphql/src:/usr/src/app/src
+      - ./graphql/src:/app/src
   postgres:
     image: postgres:latest
     ports:
