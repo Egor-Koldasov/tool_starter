@@ -1,18 +1,41 @@
 version: "3.9"
 services:
-  webpack:
-    build: ./webpack
+  # webpack:
+  #   build: ./webpack
+  #   ports:
+  #     - "3000:3000"
+  #     - "9229:9229"
+  #   volumes:
+  #     - ./webpack/src:/app/src
+  #     - ./webpack/package.json:/app/package.json
+  #     - ./webpack/package-lock.json:/app/package-lock.json
+  #     - ./webpack/tsconfig.json:/app/tsconfig.json
+  #     - ./webpack/globals.d.ts:/app/globals.d.ts
+  nextjs-client:
+    build: ./nextjs-client
     ports:
       - "3000:3000"
       - "9229:9229"
     volumes:
-      - ./webpack/src:/app/src
+      - ./nextjs-client/pages:/app/pages
+      - ./nextjs-client/public:/app/public
+      - ./nextjs-client/styles:/app/styles
+      - ./nextjs-client/package.json:/app/package.json
+      - ./nextjs-client/package-lock.json:/app/package-lock.json
+      - ./nextjs-client/tsconfig.json:/app/tsconfig.json
+      - ./nextjs-client/globals.d.ts:/app/globals.d.ts
   graphql:
     build: ./graphql
     ports:
       - "4000:4000"
     volumes:
       - ./graphql/src:/app/src
+      - ./graphql/package.json:/app/package.json
+      - ./graphql/package-lock.json:/app/package-lock.json
+      - ./graphql/tsconfig.json:/app/tsconfig.json
+      - ./graphql/globals.d.ts:/app/globals.d.ts
+      - ./graphql/jest.config.ts:/app/jest.config.ts
+      - ./graphql/babel.config.js:/app/babel.config.js
   postgres:
     image: postgres:latest
     ports:

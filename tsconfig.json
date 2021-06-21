@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "outDir": "dist",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  }
+} 
