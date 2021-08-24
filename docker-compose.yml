@@ -1,18 +1,9 @@
 version: "3.9"
 services:
-  nextjs-client:
-    build: ./nextjs-client
-    ports:
-      - "3000:3000"
-      - "9229:9229"
-    volumes:
-      - ./nextjs-client/pages:/app/pages
-      - ./nextjs-client/public:/app/public
-      - ./nextjs-client/styles:/app/styles
-      - ./nextjs-client/package.json:/app/package.json
-      - ./nextjs-client/package-lock.json:/app/package-lock.json
-      - ./nextjs-client/tsconfig.json:/app/tsconfig.json
-      - ./nextjs-client/globals.d.ts:/app/globals.d.ts
+  nextjs:
+    extends: 
+      file: ./nextjs/docker-compose.module.yml
+      service: nextjs
   graphql:
     extends: 
       file: ./graphql/docker-compose.module.yml
