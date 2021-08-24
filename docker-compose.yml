@@ -1,16 +1,5 @@
 version: "3.9"
 services:
-  # webpack:
-  #   build: ./webpack
-  #   ports:
-  #     - "3000:3000"
-  #     - "9229:9229"
-  #   volumes:
-  #     - ./webpack/src:/app/src
-  #     - ./webpack/package.json:/app/package.json
-  #     - ./webpack/package-lock.json:/app/package-lock.json
-  #     - ./webpack/tsconfig.json:/app/tsconfig.json
-  #     - ./webpack/globals.d.ts:/app/globals.d.ts
   nextjs-client:
     build: ./nextjs-client
     ports:
@@ -25,17 +14,13 @@ services:
       - ./nextjs-client/tsconfig.json:/app/tsconfig.json
       - ./nextjs-client/globals.d.ts:/app/globals.d.ts
   graphql:
-    build: ./graphql
-    ports:
-      - "4000:4000"
-    volumes:
-      - ./graphql/src:/app/src
-      - ./graphql/package.json:/app/package.json
-      - ./graphql/package-lock.json:/app/package-lock.json
-      - ./graphql/tsconfig.json:/app/tsconfig.json
-      - ./graphql/globals.d.ts:/app/globals.d.ts
-      - ./graphql/jest.config.ts:/app/jest.config.ts
-      - ./graphql/babel.config.js:/app/babel.config.js
+    extends: 
+      file: ./graphql/docker-compose.module.yml
+      service: graphql
+  migrate:
+    extends: 
+      file: ./migrate/docker-compose.module.yml
+      service: migrate
   postgres:
     image: postgres:latest
     ports:
@@ -44,17 +29,10 @@ services:
       POSTGRES_USER: admin
       POSTGRES_DB: dev_overview
       POSTGRES_PASSWORD: devpassword
-  dbmate:
-    image: amacneil/dbmate
-    command: up
-    volumes:
-      - ./postgres/db:/db
-    environment:
-      DATABASE_URL: postgres://admin:devpassword@postgres:5432/dev_overview?sslmode=disable
   pgadmin:
     image: dpage/pgadmin4
     ports:
       - "8100:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@dev.local
+      PGADMIN_DEFAULT_EMAIL: admin@dev.com
       PGADMIN_DEFAULT_PASSWORD: pgadmindev
