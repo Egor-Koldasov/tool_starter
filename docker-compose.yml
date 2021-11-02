@@ -27,3 +27,10 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@dev.com
       PGADMIN_DEFAULT_PASSWORD: pgadmindev
+# does not work
+  graphiql:
+    image: npalm/graphiql
+    ports:
+      - "4100:4000"
+    environment:
+      API_URL: "http://graphql:4000/graphql"
