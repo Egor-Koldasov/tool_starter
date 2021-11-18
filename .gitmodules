@@ -1,6 +1,3 @@
-[submodule "graphql"]
-	path = graphql
-	url = git@github.com:Egor-Koldasov/tool_starter_graphql.git
 [submodule "webpack"]
 	path = webpack
 	url = git@github.com:Egor-Koldasov/tool_starter_webpack.git
@@ -10,3 +7,6 @@
 [submodule "nextjs"]
 	path = nextjs
 	url = git@github.com:Egor-Koldasov/tool_starter_nextjs.git
+[submodule "api"]
+	path = api
+	url = git@github.com:Egor-Koldasov/tool_starter_api.git

@@ -4,10 +4,14 @@ services:
     extends: 
       file: ./nextjs/docker-compose.module.yml
       service: nextjs
-  graphql:
+  api:
     extends: 
-      file: ./graphql/docker-compose.module.yml
-      service: graphql
+      file: ./api/docker-compose.module.yml
+      service: api
+  # graphql:
+  #   extends: 
+  #     file: ./graphql/docker-compose.module.yml
+  #     service: graphql
   migrate:
     extends: 
       file: ./migrate/docker-compose.module.yml
